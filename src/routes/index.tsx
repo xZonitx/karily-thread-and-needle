@@ -2,10 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
 import hero from "@/assets/hero.jpg";
-import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
 import g4 from "@/assets/gallery-4.jpg";
+import bordado from "@/assets/bordado-karily.jpg.asset.json";
+import cuceiLogo from "@/assets/cucei-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,13 +28,12 @@ const SERVICIOS = [
   { t: "Elaboración de muestras", d: "Bordamos una muestra antes de producir tu pedido para que apruebes colores, tamaño y calidad.", i: "◈" },
 ];
 const GALERIA = [
-  { src: g1, alt: "Polo con logotipo bordado" },
+  { src: bordado.url, alt: "Playeras con bordado de corazón" },
   { src: g2, alt: "Gorra con bordado dorado" },
   { src: g3, alt: "Blusa con bordado floral" },
   { src: g4, alt: "Chamarra de trabajo bordada" },
 ];
 const DIRECCION = "Degollado #120 A, Zapotlanejo, Jalisco, México";
-const MAPS = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(DIRECCION)}`;
 
 const schema = z.object({
   nombre: z.string().trim().min(2, "Escribe tu nombre").max(100),
@@ -150,9 +150,6 @@ function Ubicacion() {
       <div className="stitch mx-auto max-w-2xl rounded-lg bg-card p-10 text-center">
         <p className="text-2xl font-display text-primary">Degollado #120 A</p>
         <p className="mt-1 text-muted-foreground">Zapotlanejo, Jalisco, México</p>
-        <a href={MAPS} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block rounded-md bg-primary px-6 py-3 font-semibold text-primary-foreground hover:opacity-90">
-          Abrir en Google Maps
-        </a>
       </div>
     </section>
   );
@@ -222,7 +219,9 @@ function Footer() {
   return (
     <footer className="bg-secondary py-12 text-secondary-foreground">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 px-4 md:flex-row md:justify-between">
-        <div className="stitch flex h-24 w-24 shrink-0 items-center justify-center rounded-md text-xs">Logo CUCEI</div>
+        <div className="flex h-24 w-44 shrink-0 items-center justify-center rounded-md bg-background p-3">
+          <img src={cuceiLogo.url} alt="Logo del CUCEI, Centro Universitario de Ciencias Exactas e Ingenierías" width={1948} height={750} className="max-h-full w-full object-contain" />
+        </div>
         <ul className="space-y-1 text-center text-sm md:text-left">
           <li><strong>Nombre del alumno:</strong> Cesar Emanuel Hernandez Perez</li>
           <li><strong>Materia:</strong> Desarrollo de Aplicaciones Web y Móviles</li>
